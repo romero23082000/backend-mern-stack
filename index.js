@@ -67,21 +67,21 @@ app.get('/', (request, response) => {
   response.send('<h1>Hello World!</h1>')
 })
 
-app.get('/api/notes', (request, response) => {
+app.get('/apis/notes', (request, response) => {
   response.json(notes)
 })
 
-app.get('/api/persons', (request, response) => {
+app.get('/apis/persons', (request, response) => {
   response.json(persons)
 })
 
-app.get('/api/info', (request, response) => {
+app.get('/apis/info', (request, response) => {
   const countPersons = persons.length
   const date = new Date()
   response.send(`<p>Phonebook has info for ${countPersons} people</p><p>${date}</p>`)
 })
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/apis/notes/:id', (request, response) => {
   const id = Number(request.params.id)
   const note = notes.find(note => note.id === id)
   if (note) {
@@ -91,7 +91,7 @@ app.get('/api/notes/:id', (request, response) => {
   }
 })
 
-app.get('/api/persons/:id', (request, response) => {
+app.get('/apis/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   const person = persons.find(person => person.id === id)
   if (person) {
@@ -101,21 +101,21 @@ app.get('/api/persons/:id', (request, response) => {
   }
 })
 
-app.delete('/api/notes/:id', (request, response) => {
+app.delete('/apis/notes/:id', (request, response) => {
   const id = Number(request.params.id)
   notes = notes.filter(note => note.id !== id)
 
   response.status(204).end()
 })
 
-app.delete('/api/persons/:id', (request, response) => {
+app.delete('/apis/persons/:id', (request, response) => {
   const id = Number(request.params.id)
   persons = persons.filter(people => people.id !== id)
 
   response.status(204).end()
 })
 
-app.post('/api/notes', (request, response) => {
+app.post('/apis/notes', (request, response) => {
   const body = request.body
 
   if (!body.content) {
@@ -136,7 +136,7 @@ app.post('/api/notes', (request, response) => {
   response.json(note)
 })
 
-app.post('/api/persons', (request, response) => {
+app.post('/apis/persons', (request, response) => {
   const body = request.body
 
   if (!body.number) {
